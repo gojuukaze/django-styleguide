@@ -1,6 +1,8 @@
 # Django风格指南
 
-Django风格指南，给Django使用者的一些关于目录结构、使用的建议。该指南中所有的例子你都可以在DeerU([https://github.com/gojuukaze/DeerU](https://github.com/gojuukaze/DeerU))项目中找到。
+Django风格指南，给Django使用者的一些关于目录结构、使用的建议。该指南中所有的例子你都可以在DeerU([https://github.com/gojuukaze/DeerU](https://github.com/gojuukaze/DeerU))项目中找到。  
+
+项目地址：https://github.com/gojuukaze/django-styleguide
 
 ## project结构
 
