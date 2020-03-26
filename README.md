@@ -28,7 +28,11 @@ project结构建议是这样的（[demo](https://github.com/gojuukaze/DeerU)）
 * `tool` ： 用来存放一些每个app都会用到的公用函数，比如：时间处理函数，Exception类等
 
 ## 子project目录结构
-项目下的project_name目录建议是这样的（[demo](https://github.com/gojuukaze/DeerU/tree/master/deeru)）  
+项目下的project_name目录是存放项目`settings`的地方，有两种结构可供选择。
+
+### 第一种，不提交settings.py
+
+[demo](https://github.com/gojuukaze/DeerU/tree/master/deeru)
 > demo中并没有严格按照这个目录结构，因为demo需要支持git升级且不影响已修改的settings配置。  
 > 在实际项目中这个结构不一定适用于所有项目，但也有可以借鉴的地方。
 
@@ -40,7 +44,7 @@ project_name/
 	settings_common.py
 	settings_dev.py
 	settings_test.py
-	settings_project.py
+	settings_prod.py
 	* settings_local.py
 
 ```
@@ -54,10 +58,45 @@ project_name/
   ```
 * `settings_local.py` ：这个用于本地开发的settings，因为开发时会对settings配置进行修改，建议此文件不提交代码仓库，防止对其他人的开发造成干扰。
 
+### 第二种，提交settings.py
+
+```bash
+# * 表示不提交到仓库
+
+project_name/
+	settings.py
+	settings_common.py
+	settings_dev.py
+	settings_test.py
+	settings_prod.py
+	* settings_local.py
+
+```
+
+* 此结构提交settings.py，在settings.py中判断引用哪个环境的settings。
+  settings.py的代码如下：
+  
+  ```
+  import os
+  from detox_web.settings_common import *
+  ENV=os.getenv('ENV','local')
+  
+  if ENV == 'local':
+    from detox_web.settings_local import *
+  elif ENV == 'test':
+    from detox_web.settings_test import *
+  elif ENV == 'prod':
+    from detox_web.settings_prod import *
+    
+  ...
+  
+  ```
+  
+这个结构有个缺点，在执行远程命令或crontab脚本时需要显示设置环境变量ENV，因为在执行非交互式操作时，不会读取`.bashrc`中的配置
 
 ## app结构
 ### 初始、小型的项目app
-对于初始、小型的项目app结构建议是这样的
+对于初始、小型的项目只需要一个app，其结构建议是这样的（另外建议html的代码单独放到一个app中，下面有说明）
 
 ```
 app_name\
@@ -261,7 +300,7 @@ app_name\
       pass
   ```
   
-  需要用到model时你应该从子model文件import（[demo](https://github.com/gojuukaze/DeerU/blob/master/app/db_manager/content_manager.py#L1)）：
+  需要用到model时你应该从子model文件import，而不是从models.py（[demo](https://github.com/gojuukaze/DeerU/blob/master/app/db_manager/content_manager.py#L1)）：
   
   ```python
   from app_name.app_models.user_models import User
@@ -274,6 +313,9 @@ app_name\
 
 
 ## html_app结构
+
+建议吧html代码单独放到一个app中，结构如下
+
 ```bash
 html_app\
  	apps.py
@@ -309,7 +351,7 @@ html_app\
 
 
 ## view命名
-view函数、类命名应该以view结尾，方便与其他镜像区分函数，如：
+view函数、类命名应该以view结尾，方便与其他函数区分，如：
 
 ```python
 
