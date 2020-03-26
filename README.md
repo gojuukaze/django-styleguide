@@ -32,9 +32,8 @@ project结构建议是这样的（[demo](https://github.com/gojuukaze/DeerU)）
 
 ### 第一种，不提交settings.py
 
-[demo](https://github.com/gojuukaze/DeerU/tree/master/deeru)
-> demo中并没有严格按照这个目录结构，因为demo需要支持git升级且不影响已修改的settings配置。  
-> 在实际项目中这个结构不一定适用于所有项目，但也有可以借鉴的地方。  
+[demo](https://github.com/gojuukaze/DeerU/tree/master/deeru) （demo中并没有严格按照这个目录结构，因为demo需要支持git升级且不影响已修改的settings配置。  ）  
+
 
 ```bash
 # * 表示不提交到仓库
@@ -50,7 +49,7 @@ project_name/
 ```
 
 * `settings_common.py` ： 建议首先需要一个`settings_common.py`，它用来保存一些在dev、test、product三个环境用到公用的配置。
-* `settings.py ` ：Django的settings文件，之所以不建议提交是为了防止把开发时的修改提交了上去，造成bug。在实际上线时根据不同环境把不同环境的settings文件拷贝为`settings.py`
+* `settings.py ` ：Django的settings文件，之所以不建议提交是为了防止把开发时的修改提交了上去，造成bug。在实际上线时根据不同环境把不同环境的settings文件拷贝为`settings.py`，或者手动指定使用的settings
 * `settings_dev.py` ：dev环境的专有配置，比如数据库地址、密码，缓存地址等，它里面引用了settings_common，如：
 
   ```python
