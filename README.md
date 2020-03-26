@@ -75,7 +75,7 @@ project_name/
 * 此结构提交settings.py，在settings.py中判断引用哪个环境的settings。
   settings.py的代码如下：
   
-  ```
+  ```python
   import os
   from detox_web.settings_common import *
   ENV=os.getenv('ENV','local')
