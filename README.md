@@ -34,7 +34,7 @@ project结构建议是这样的（[demo](https://github.com/gojuukaze/DeerU)）
 
 [demo](https://github.com/gojuukaze/DeerU/tree/master/deeru)
 > demo中并没有严格按照这个目录结构，因为demo需要支持git升级且不影响已修改的settings配置。  
-> 在实际项目中这个结构不一定适用于所有项目，但也有可以借鉴的地方。
+> 在实际项目中这个结构不一定适用于所有项目，但也有可以借鉴的地方。  
 
 ```bash
 # * 表示不提交到仓库
@@ -96,7 +96,7 @@ project_name/
 
 ## app结构
 ### 初始、小型的项目app
-对于初始、小型的项目只需要一个app，其结构建议是这样的（另外建议html的代码单独放到一个app中，下面有说明）
+对于初始、小型的项目只需要一个app，其结构建议是这样的（另外建议html的代码单独放到一个app中，其结构下面有说明）
 
 ```
 app_name\
