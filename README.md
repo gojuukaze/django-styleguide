@@ -77,15 +77,15 @@ project_name/
   
   ```python
   import os
-  from detox_web.settings_common import *
+  from xxx.settings_common import *
   ENV=os.getenv('ENV','local')
   
   if ENV == 'local':
-    from detox_web.settings_local import *
+      from xxx.settings_local import *
   elif ENV == 'test':
-    from detox_web.settings_test import *
+      from xxx.settings_test import *
   elif ENV == 'prod':
-    from detox_web.settings_prod import *
+      from xxx.settings_prod import *
     
   ...
   
